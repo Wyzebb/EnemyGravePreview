@@ -48,17 +48,21 @@ public class OpenChestEvent implements Listener {
 
                 List<ItemStack> itemStacks = new ArrayList<>();
 
-                itemStacks.addAll(Arrays.asList(chest.getArmorInv()));
-                itemStacks.add(chest.getOffhandItem());
                 itemStacks.addAll(Arrays.asList(chest.getStorageInv()));
 
-                Inventory inv = Bukkit.createInventory(chestOpener, 9 * 4, invName);
+                Inventory inv = Bukkit.createInventory(chestOpener, 9 * 5, invName);
 
                 for (ItemStack itemStack: itemStacks) {
                     if (itemStack != null) {
                         inv.addItem(itemStack);
                     }
                 }
+
+                for (int i = 1; i <= Arrays.asList(chest.getArmorInv()).toArray().length; i++) {
+                    inv.setItem(40 - i, Arrays.asList(chest.getArmorInv()).get(i - 1));
+                }
+
+                inv.setItem(44, chest.getOffhandItem());
 
                 chestOpener.openInventory(inv);
             }
