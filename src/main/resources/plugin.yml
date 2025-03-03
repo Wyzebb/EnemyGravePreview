@@ -1,0 +1,8 @@
+name: EnemyGravePreview
+version: '1.0.0'
+main: me.wyzebb.enemyGravePreview.EnemyGravePreview
+api-version: '1.16'
+authors: [Wyzebb]
+description: An unofficial add-on to AngelChest that allows enemies to preview the contents of your grave
+depend:
+  - AngelChest
