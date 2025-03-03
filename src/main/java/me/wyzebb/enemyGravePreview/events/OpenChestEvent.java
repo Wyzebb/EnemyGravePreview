@@ -20,7 +20,6 @@ import java.util.Objects;
 import static me.wyzebb.enemyGravePreview.EnemyGravePreview.plugin;
 
 public class OpenChestEvent implements Listener {
-    private String invName = "Player's Grave";
 
     @EventHandler
     public void onOpenChest(PlayerInteractEvent event) {
@@ -45,7 +44,7 @@ public class OpenChestEvent implements Listener {
         if (chest.isProtected()) {
             if (!Objects.equals(chestOwner.getName(), chestOpener.getName())) {
                 // The player is not the chest owner
-                invName = chestOwner.getName() + "'s Grave";
+                String invName = chestOwner.getName() + "'s Grave";
 
                 List<ItemStack> itemStacks = new ArrayList<>();
 
