@@ -4,6 +4,8 @@ import de.jeff_media.angelchest.AngelChest;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +24,10 @@ import static me.wyzebb.enemyGravePreview.EnemyGravePreview.plugin;
 
 public class OpenChestEvent implements Listener {
 
+    final File angelChestCfgFile = new File(Bukkit.getPluginManager().getPlugin("AngelChest").getDataFolder(), "config.yml");
+
+    final FileConfiguration config = YamlConfiguration.loadConfiguration(angelChestCfgFile);
+
     @EventHandler
     public void onOpenChest(PlayerInteractEvent event) {
         Player chestOpener = event.getPlayer();
@@ -29,7 +36,15 @@ public class OpenChestEvent implements Listener {
             return;
         }
 
-        if (event.getClickedBlock().getType() != Material.CHEST) {
+        String mat = config.getString("material");
+
+        if (Objects.equals(mat, "head:player")) {
+            mat = "PLAYER_HEAD";
+        } else {
+            mat = mat.toUpperCase();
+        }
+
+        if (event.getClickedBlock().getType() != Material.valueOf(mat)) {
             return;
         }
 
