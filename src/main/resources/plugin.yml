@@ -1,5 +1,5 @@
 name: EnemyGravePreview
-version: '1.0.0'
+version: '1.0.1'
 main: me.wyzebb.enemyGravePreview.EnemyGravePreview
 api-version: '1.16'
 authors: [Wyzebb]
